@@ -1,0 +1,4 @@
+{ "run_list": [
+  "recipe[centos-base]",
+  "recipe[asterisk]"
+]}
