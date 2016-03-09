@@ -9,15 +9,15 @@
 
 log "Configure .bashrc and .vimrc"
 bash "Clone config" do
-  cwd "/home/user"
+  cwd "/root"
   code <<-EOH
     git clone https://github.com/gasthomas/config.git
   EOH
-  not_if { ::File.exists?("/home/user/config") }
+  not_if { ::File.exists?("/root/config") }
 end
 
 bash "Delete current files" do
-  cwd "/home/user"
+  cwd "/root"
   code <<-EOH
     rm -f .bashrc
     rm -f .vimrc
@@ -25,16 +25,16 @@ bash "Delete current files" do
 end
 
 log "Create symbolic links"
-link '/home/user/.bashrc' do
-  to '/home/user/config/.bashrc'
+link '/root/.bashrc' do
+  to '/root/config/.bashrc'
 end
 
-link '/home/user/.vimrc' do
-  to '/home/user/config/.vimrc'
+link '/root/.vimrc' do
+  to '/root/config/.vimrc'
 end
 
 bash "Load .bashrc" do
-  cwd "/home/user"
+  cwd "/root"
   code <<-EOH
     source .bashrc
   EOH
