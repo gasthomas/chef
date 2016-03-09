@@ -1,0 +1,10 @@
+{ "run_list": [
+    "recipe[base-system]",
+    "recipe[config]",
+    "recipe[ubuntu-sandbox]"
+  ],
+  "sandbox": {
+    "ip_address": "192.168.236.251",
+    "hostname": "ubuntu-sandbox"
+  }
+}
