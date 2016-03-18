@@ -10,8 +10,7 @@
 log "Install Asterisk"
 
 log "Install Required Packages"
-
-%w{ automake gcc gcc-c++ openssl-devel libcurl-devel libogg-devel libvorbis-devel speex-devel net-snmp-devel corosynclib-devel newt-devel popt-devel libtool-ltdl-devel lua-devel postgresql-devel neon-devel libical-devel openldap-devel bluez-libs-devel gsm-devel libedit-devel libuuid-devel mysql-devel.x86_64 unixODBC-devel.x86_64 mysql-connector-odbc.x86_64 ncurses-devel.x86_64 libxml2-devel.x86_64 sqlite-devel.x86_64 libtool-ltdl libtool-ltdl-devel}.each do |pkg|
+%w{ gcc-c++ ncurses-devel sqlite-devel libxml2-devel}.each do |pkg|
   package pkg do
     action :install
   end
@@ -52,4 +51,10 @@ bash "Install Asterisk" do
     make samples
   EOH
   not_if { ::File.exists?("/etc/init.d/asterisk") }
+end
+
+template "/etc/sysconfig/selinux" do
+  source "selinux.erb"
+  owner "root"
+  mode 0644
 end
