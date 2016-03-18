@@ -1,4 +1,12 @@
 { "run_list": [
-  "recipe[centos-base]",
-  "recipe[asterisk]"
-]}
+    "recipe[base-system]",
+    "recipe[config]",
+    "recipe[centos-sandbox]",
+    "recipe[asterisk]"
+  ],
+  "sandbox": {
+    "ip_address": "192.168.236.254",
+    "hostname": "centos-asterisk",
+    "timezone": "UTC"
+  }
+}
